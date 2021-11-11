@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>memocchi</title>
+</head>
+
+<body>
+    <header>
+        <h1>memocchi</h1>
+    </header>
+    <main>
+        <div class="tab_box">
+            <div class="tab_area">
+                <div class="tab active">タブ１</div>
+                <div class="tab">タブ２</div>
+                <div class="tab">タブ３</div>
+                <div class="tab">タブ４</div>
+                <div class="tab">タブ５</div>
+            </div>
+
+            <div class="content_area">
+                <div class="content show">
+                    <textarea class="content_text"></textarea>
+                </div>
+                <div class="content">
+                    <textarea class="content_text"></textarea>
+                </div>
+                <div class="content">
+                    <textarea class="content_text"></textarea>
+                </div>
+                <div class="content">
+                    <textarea class="content_text"></textarea>
+                </div>
+                <div class="content">
+                    <textarea class="content_text"></textarea>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li id="save">保存</li>
+            <li id="allclear">全消去</li>
+        </ul>
+    </main>
+    <footer></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"
+        integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k=" crossorigin="anonymous"></script>
+    <script>
+        //タブ
+        $(function () {
+            let tabs = $(".tab");
+            $(".tab").on("click", function () {
+                $(".active").removeClass("active");
+                $(this).addClass("active");
+                const index = tabs.index(this);
+                $(".content").removeClass("show").eq(index).addClass("show");
+            })
+
+            //保存
+        })
+        $("#save").on("click", function () {
+            const date = $(".content_text").map(function (index) {
+                return $(this).val()
+            })
+            const date1 = {
+                text: date.get()
+            }
+            console.log(date1);
+            const jsondate = JSON.stringify(date1)
+            console.log(jsondate);
+            localStorage.setItem("memochi", jsondate)
+        })
+        //全削除
+        $("#allclear").on("click", function () {
+            localStorage.removeItem("memochi");
+            $(".content_text").val("");
+        })
+
+        //取得
+        if (localStorage.getItem("memochi")) {
+            const jsondate = localStorage.getItem("memochi");
+            console.log(jsondate);
+            const date = JSON.parse(jsondate);
+            let moji = "content_id"
+            let tmp = document.getElementsByClassName("content_text")
+            for (i = 0; i < date.text.length; i++) {
+                console.log(date.text.length);
+                tmp[i].setAttribute("id", moji + i);
+                $(tmp[i]).val(date.text[i])
+                console.log(tmp[i]);
+                console.log(date.text[i]);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+body{
+    max-width: 960px;
+    margin: 0 auto;
+    font-size: 20px;
+    background-image: url(../img/back.png);
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    
+}
+h1{
+    text-align: center;
+    color: #fff;
+}
+
+.tab_area{
+   display: flex; 
+   justify-content: space-around;
+   background-color: #222e3e;
+   cursor: pointer;
+}
+.tab{
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    border-right: 1px solid #50637b;
+    border-left: 1px solid #222e3e;
+
+}
+.tab.active{
+  background-color: #ccc;
+  color: #222e3e;
+  border: none;
+} 
+
+.content_area{
+    width: 960px;
+    height: 200px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 200px;
+
+}
+.content{
+    display: none;
+}
+.content.show{
+    display: block;
+}
+.content_text{
+    width: 99%;
+    height:200px;
+    font-size: 80%;
+}
+ul{
+    padding: 0;
+    border-top: 1px solid #000000;
+    display:table;  /* 定義 */
+    table-layout: fixed;
+    width:100%;
+}
+li{
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display:table-cell;  /* 定義 */
+    cursor: pointer;
+    text-align: center;
+}
+li:hover{
+    background: #0066CC;
+    color:#fff;
+}  
